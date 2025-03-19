@@ -1,9 +1,9 @@
-// Defining text characters for the empty and full hearts for you to use later.
+// Define heart characters
 const EMPTY_HEART = '♡';
 const FULL_HEART = '♥';
 
 document.addEventListener("DOMContentLoaded", () => {
-  // Select modal and add the 'hidden' class
+  // Ensure the error modal starts hidden
   const errorModal = document.getElementById("modal");
   errorModal.classList.add("hidden");
 
@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
     heart.addEventListener("click", () => {
       mimicServerCall()
         .then(() => {
+          // Toggle between empty and full heart
           if (heart.textContent === EMPTY_HEART) {
             heart.textContent = FULL_HEART;
             heart.classList.add("activated-heart");
@@ -23,11 +24,11 @@ document.addEventListener("DOMContentLoaded", () => {
           }
         })
         .catch(error => {
-          // Display error modal
+          // Show error modal with message
           errorModal.classList.remove("hidden");
           document.getElementById("modal-message").textContent = error;
           
-          // Hide after 3 seconds
+          // Hide modal after 3 seconds
           setTimeout(() => errorModal.classList.add("hidden"), 3000);
         });
     });
